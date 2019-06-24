@@ -4,10 +4,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config')
+const dataRouter = require('../data/data-router')
 
 const app = express();
 
-// const morganOption = (process.env.NODE_ENV === 'production')
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
@@ -17,12 +17,14 @@ app.use(cors());
 app.use(helmet());
 
 app.get('/', (req, res) => {
-  res.send('Hello, world!')
+  res.send('Hello, there!')
 })
+
+app.use('/api/posts', dataRouter)
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
-  // if (process.env.NODE_ENV === 'production') {
+
   if (NODE_ENV === 'production') {
     response = { error: { message: 'server errror'}}
   } else {
