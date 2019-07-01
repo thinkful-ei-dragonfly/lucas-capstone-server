@@ -20,12 +20,13 @@ contentRouter
           text_headline: xss(post.text_headline),
           text_content: xss(post.text_content),
           image_url: xss(post.image_url),
-          video_url: xss(post.video_url),
+          video_id: xss(post.video_id),
           audio_url: xss(post.audio_url)
         }
       }))
   })
   .post(bodyParser, (req, res, next) => {
+
     for (const field of [ 'post_type', 'title' ]) {
       if (!req.body[field]) {
         return res.status(400).send(`'${field}' is required`)
@@ -39,17 +40,10 @@ contentRouter
 
     const newPost = {
       id: uuid(),
-      title,
-      post_type,
-      caption,
-      text_headline,
-      text_content,
-      image_url,
-      video_url,
-      audio_url
+      ...req.body
     }
     data.push(newPost)
-    res.send(data)
+    res.status(201).json(newPost)
 
   })
 
