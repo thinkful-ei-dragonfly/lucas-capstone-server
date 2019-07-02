@@ -4,7 +4,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config')
-const dataRouter = require('../data/data-router')
+const postsRouter = require('./posts/posts-router')
+const stylesRouter = require('./styles/styles-router')
 
 const app = express();
 
@@ -17,10 +18,11 @@ app.use(cors());
 app.use(helmet());
 
 app.get('/', (req, res) => {
-  res.send('Hello, there!')
+  res.send('Hello, world!')
 })
 
-app.use('/api/posts', dataRouter)
+app.use('/api/posts', postsRouter)
+app.use('/api/styles', stylesRouter)
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
