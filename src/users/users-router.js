@@ -1,31 +1,26 @@
 const express = require('express')
 const path = require('path')
 const UsersService = require('./users-service')
-
 const usersRouter = express.Router()
 const bodyParser = express.json()
 
 usersRouter
   .post('/', bodyParser, (req, res, next) => {
     const { password, user_name, full_name } = req.body
+
     for (const field of ['full_name', 'user_name', 'password']) {
       if (!req.body[field]) {
-        return res
-          .status(400)
-          .json({
+        return res.status(400).json({
             error: `Missing ${field} in request body`
           })
       }
     }
-
     const passwordError = UsersService.validatePassword(password)
+
     if (passwordError) {
-      return res
-        .status(400)
-        .json({
-          error: passwordError
-        })
+      return res.status(400).json({ error: passwordError })
     }
+
     UsersService.hasUserWithUserName(
       req.app.get('db'),
       user_name
@@ -38,7 +33,7 @@ usersRouter
         .then(hashedPassword => {
           const newUser = {
             user_name,
-            password,
+            password: hashedPassword,
             full_name
           }
 

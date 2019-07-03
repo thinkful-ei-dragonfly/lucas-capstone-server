@@ -3,6 +3,7 @@ const path = require('path')
 const xss = require('xss')
 const uuid = require('uuid/v4')
 const PostsService = require('./posts-service')
+const { requireAuth } = require('../middleware/jwt-auth')
 
 const contentRouter = express.Router()
 const bodyParser = express.json()
@@ -26,7 +27,7 @@ contentRouter
       })
       .catch(next)
   })
-  .post(bodyParser, (req, res, next) => {
+  .post(bodyParser, requireAuth, (req, res, next) => {
     const { type, title, caption = '', text_title = '', text_content = '', image = '', video = '', audio = ''} = req.body
     if (!title || !type) {
       return res
