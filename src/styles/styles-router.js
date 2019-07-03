@@ -2,6 +2,7 @@ const express = require('express')
 const xss = require('xss')
 const uuid = require('uuid/v4')
 const StylesService = require('./styles-service')
+const { requireAuth } = require('../middleware/jwt-auth')
 
 const stylesRouter = express.Router()
 const bodyParser = express.json()
@@ -22,8 +23,8 @@ stylesRouter
       })
       .catch(next)
   })
-  .post(bodyParser, (req, res, next) => {
-    const { post, top_style, left_style, width_style, height_style } = req.body
+  .post(bodyParser, requireAuth, (req, res, next) => {
+    const { post } = req.body
     if (!post) {
       return res
         .status(400)
@@ -33,10 +34,10 @@ stylesRouter
     }
     const newStyle = {
       post,
-      top_style,
-      left_style,
-      width_style,
-      height_style
+      top_style: '',
+      left_style: '',
+      width_style: '',
+      height_style: ''
     }
     StylesService.insertStyle(
       req.app.get('db'),
