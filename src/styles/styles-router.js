@@ -97,13 +97,14 @@ stylesRouter
       .catch(next)
   })
   .patch( bodyParser, (req, res, next) => {
-    const { post, top_style, left_style, width_style, height_style } = req.body
+    const { post, top_style, left_style, width_style, height_style, z_index } = req.body
     const styleToUpdate = {
       post,
       top_style,
       left_style,
       width_style,
-      height_style
+      height_style,
+      z_index
     }
     StylesService.updateStyle(
       req.app.get('db'),
