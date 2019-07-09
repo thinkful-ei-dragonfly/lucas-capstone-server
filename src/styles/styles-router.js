@@ -18,7 +18,8 @@ stylesRouter
           top_style: xss(style.top_style),
           left_style: xss(style.left_style),
           width_style: xss(style.width_style),
-          height_style: xss(style.height_style)
+          height_style: xss(style.height_style),
+          z_index: xss(style.z_index)
         })))
       })
       .catch(next)
@@ -52,7 +53,8 @@ stylesRouter
             top_style: xss(style.top_style),
             left_style: xss(style.left_style),
             width_style: xss(style.width_style),
-            height_style: xss(style.height_style)
+            height_style: xss(style.height_style),
+            z_index: xss(style.z_index)
           })
       })
       .catch(next)
@@ -79,7 +81,8 @@ stylesRouter
         top_style: xss(style.top_style),
         left_style: xss(style.left_style),
         width_style: xss(style.width_style),
-        height_style: xss(style.height_style)
+        height_style: xss(style.height_style),
+        z_index: xss(style.z_index)
       })
     })
     .catch(next)

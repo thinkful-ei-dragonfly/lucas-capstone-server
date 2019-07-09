@@ -6,7 +6,9 @@ const PostsService = require('./posts-service')
 const { requireAuth } = require('../middleware/jwt-auth')
 
 const contentRouter = express.Router()
-const bodyParser = express.json()
+const bodyParser = express.json({
+  limit: '800kb'
+})
 
 contentRouter
   .route('/')
