@@ -4,13 +4,15 @@ const uuid = require('uuid/v4')
 function makeUsersArray () {
   return [
     {
-      id: uuid(),
+      id: 1,
       user_name: 'test-user-1',
+      full_name: 'test full_name',
       password: 'Password!1'
     },
     {
-      id: uuid(),
+      id: 2,
       user_name: 'test-user-2',
+      full_name: 'test full_name',
       password: 'Password!2'
     }
   ]
