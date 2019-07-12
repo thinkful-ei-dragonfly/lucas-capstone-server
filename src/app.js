@@ -21,7 +21,13 @@ app.use('/api/posts', postsRouter)
 app.use('/api/styles', stylesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
-
+app
+  .route('/')
+  .get((req, res, next) => {
+    res
+      .status(200)
+      .send('Hello, world!')
+  })
 app.use(function errorHandler(error, req, res, next) {
   let response;
   if (NODE_ENV === 'production') {

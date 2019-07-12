@@ -1,25 +1,27 @@
-# Express Boilerplate!
+# Colección
 
-This is a boilerplate project used for starting new projects!
+Colección is an interactive, multimedia, collage-style blog leveraging React, Express, jQuery, Node, PostgreSQL, and SASS
 
-## Set up
+Authors can create Image, Video, or Text post objects. These posts can be resized and rearranged as a collage
+## Server Address
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+https:// blah blah
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+## Tech Stack
 
-## Scripts
 
-Start the application `npm start`
 
-Start nodemon for the application `npm run dev`
+## Screenshots
 
-Run the tests `npm test`
+`GET /api/posts` returns all posts in the database
+
+![All Posts](./screenshots/get-home.png)
+
+`POST /api/posts` inserts a new post object into the database. The API responds with the newly created post object.
+
+The client makes a subsequent call to `POST /api/styles` passing in the newly created post's id. The API inserts a new object with the id passed in to the `post` column, which is a foreign key referencing the `coleccion_posts` table `id` column. This ensures each post object has a corresponding database entry for custom css styles
+
+![Create Form](./screenshots/create.png)
 
 ## Deploying
 
