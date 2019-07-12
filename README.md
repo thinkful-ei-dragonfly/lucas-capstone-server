@@ -60,7 +60,7 @@ CREATE TABLE public.styles (
 
 ## Server Address
 
-https:// blah blah
+https://guarded-depths-63877.herokuapp.com/api/
 
 ## React Front End
 
@@ -115,3 +115,5 @@ https://github.com/thinkful-ei-dragonfly/lucas-capstone-client
 ## Deploying
 
 When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+
+You will also need to create the database in Heroku using

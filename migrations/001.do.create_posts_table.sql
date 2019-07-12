@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE coleccion_posts (
 	id uuid NOT NULL DEFAULT UNIQUE uuid_generate_v4(),
 	title text NOT NULL,
