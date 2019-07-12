@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const helpers = require('./test-helpers')
 const { TEST_DATABASE_URL } = require('../src/config')
 
-describe('Useres Endpoints', function() {
+describe('Users Endpoints', function() {
   let db
 
   const testUsers = helpers.makeUsersArray()
@@ -93,17 +93,6 @@ describe('Useres Endpoints', function() {
              .send(userPasswordNotComplex)
              .expect(400, { error: `Password must contain 1 uppercase, 1 lowercase, 1 number, and 1 special character` })
         })
-        // it(`responds 400 'User name already taken' when user_name isn't unique`, () => {
-        //   const duplicateUser = {
-        //     user_name: testUsers[0].user_name,
-        //     password: '11AAaa!!',
-        //     full_name: 'test full_name'
-        //   }
-        //   return supertest(app)
-        //     .post('/api/users')
-        //     .send(duplicateUser)
-        //     .expect(400, { error: 'Username already taken' })
-        // })
       })
     })
     context(`Happy path`, () => {
