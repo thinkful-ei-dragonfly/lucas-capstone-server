@@ -96,12 +96,8 @@ function seedUsers(db, users) {
     password: bcrypt.hashSync(user.password, 1)
   }))
   return db.into('users').insert(preppedUsers)
-    .then(() =>
-    db.raw(
-      `SELECT setval('users_id_seq', ?)`,
-      [users[users.length - 1].id],
-    )
-  )
+    .returning('*')
+    .then(users => users)
 }
 function seedPosts(db, posts) {
   return posts.map(post => {
@@ -133,6 +129,12 @@ function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
   return `Bearer ${token}`
 }
 
+function makeFixtures() {
+  const testUsers = makeUsersArray()
+  const testPosts = makePostsArray()
+  return { testUsers, testPosts }
+}
+
 module.exports = {
   seedUsers,
   seedPosts,
@@ -142,5 +144,6 @@ module.exports = {
   makeUsersArray,
   makeExpectedPosts,
   makeAuthHeader,
-  cleanTables
+  cleanTables,
+  makeFixtures
 }
