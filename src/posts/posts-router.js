@@ -7,7 +7,7 @@ const { requireAuth } = require('../middleware/jwt-auth')
 
 const contentRouter = express.Router()
 const bodyParser = express.json({
-  limit: '1000000k'
+  limit: '100000000k'
 })
 
 contentRouter
