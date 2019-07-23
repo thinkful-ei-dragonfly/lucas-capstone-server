@@ -36,7 +36,9 @@ stylesRouter
     const newStyle = {
       post,
       top_style: 15,
-      left_style: 15
+      left_style: 15,
+      width_style: null,
+      height_style: null
     }
     StylesService.insertStyle(
       req.app.get('db'),
