@@ -11,13 +11,7 @@ function requireAuth(req, res, next) {
 
   try {
     const payload = AuthService.verifyJwt(bearerToken)
-    // const validAccess = AuthService.validateApiToken(bearerToken)
 
-    // if (validAccess) {
-    //   next()
-    // } else {
-    //   return res.status(401).json({ error: "unauthorized request: bad token"})
-    // }
     AuthService.getUserWithUserName(
       req.app.get('db'),
       payload.sub
