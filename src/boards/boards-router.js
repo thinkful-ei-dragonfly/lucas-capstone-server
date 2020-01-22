@@ -115,12 +115,12 @@ contentRouter
       title,
       description
     }
-    BoardsService.updatePost(
+    BoardsService.updateBoard(
       req.app.get('db'),
       req.params.board_id,
       boardToUpdate
     )
-      .then(numRowsAffected => {
+      .then(() => {
         res
           .status(204)
           .end()
