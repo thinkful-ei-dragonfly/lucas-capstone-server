@@ -10,22 +10,28 @@ function requireAuth(req, res, next) {
   }
 
   try {
-    const payload = AuthService.verifyJwt(bearerToken)
+    // const payload = AuthService.verifyJwt(bearerToken)
+    const validAccess = AuthService.validateApiToken(bearerToken)
 
-    AuthService.getUserWithUserName(
-      req.app.get('db'),
-      payload.sub
-    )
-    .then(user => {
-      if (!user)
-        return res.status(401).json({ error: 'Unauthorized request' })
-      req.user = user
+    if (validAccess) {
       next()
-    })
-    .catch(err => {
-      console.error(err)
-      next(err)
-    })
+    } else {
+      return res.status(401).json({ error: "unauthorized request: bad token"})
+    }
+    // AuthService.getUserWithUserName(
+    //   req.app.get('db'),
+    //   payload.sub
+    // )
+    // .then(user => {
+    //   if (!user)
+    //     return res.status(401).json({ error: 'Unauthorized request' })
+    //   req.user = user
+    //   next()
+    // })
+    // .catch(err => {
+    //   console.error(err)
+    //   next(err)
+    // })
   } catch(error) {
     res.status(401).json({ error: 'Unauthorized request' })
   }

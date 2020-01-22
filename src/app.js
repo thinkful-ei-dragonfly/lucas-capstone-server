@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config')
+const boardsRouter = require('./boards/boards-router')
 const postsRouter = require('./posts/posts-router')
 const stylesRouter = require('./styles/styles-router')
 const usersRouter = require('./users/users-router')
@@ -17,6 +18,7 @@ app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
 app.use(cors());
 app.use(helmet());
 
+app.use('/api/boards', boardsRouter)
 app.use('/api/posts', postsRouter)
 app.use('/api/styles', stylesRouter)
 app.use('/api/auth', authRouter)

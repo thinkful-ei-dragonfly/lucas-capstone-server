@@ -11,6 +11,9 @@ const AuthService = {
   comparePasswords(password, hash) {
     return bcrypt.compare(password, hash)
   },
+  validateApiToken(token) {
+    return token === process.env.API_TOKEN
+  },
   createJwt(subject, payload) {
     return jwt.sign(payload, config.JWT_SECRET, {
       subject,
