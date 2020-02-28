@@ -13,10 +13,14 @@ const bodyParser = express.json({
 contentRouter
   .route('/')
   .get((req, res, next) => {
-    PostsService.getAllPosts(req.app.get('db'))
+    PostsService.getAllPosts
+      (req.app.get('db'),
+        req.params.board_id
+    )
       .then(posts => {
         res.json(posts.map(post => ({
           id: post.id,
+          board: post.board,
           type: post.type,
           title: xss(post.title),
           caption: xss(post.caption),
