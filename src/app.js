@@ -20,7 +20,7 @@ app.use(helmet());
 
 app.use('/api/boards', boardsRouter)
 app.use('/api/boards/:board_id/posts', postsRouter)
-app.use('/api/styles', stylesRouter)
+app.use('/api/boards/:board_id/styles', stylesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 app
