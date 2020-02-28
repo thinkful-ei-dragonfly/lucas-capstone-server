@@ -2,7 +2,6 @@ const PostsService = {
   getAllPosts(db, board) {
     return db
       .from('posts AS post')
-      .select('*')
       .where({ board })
   },
   insertPost(db, newPost) {
@@ -14,7 +13,7 @@ const PostsService = {
         return response[0]
       })
   },
-  getById(db, id, ) {
+  getById(db, id ) {
     return db
       .from('posts')
       .select('*')

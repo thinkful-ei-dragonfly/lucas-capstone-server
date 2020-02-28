@@ -13,9 +13,11 @@ const bodyParser = express.json({
 contentRouter
   .route('/')
   .get((req, res, next) => {
+    const board = req.query.board
+    
     PostsService.getAllPosts(
         req.app.get('db'),
-        req.params.board_id
+        board
     )
       .then(posts => {
         res.json(posts.map(post => ({
