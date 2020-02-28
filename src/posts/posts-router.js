@@ -30,7 +30,8 @@ contentRouter
       .catch(next)
   })
   .post(bodyParser, requireAuth, (req, res, next) => {
-    const { type, title, caption = '', text_title = '', text_content = '', image = '', video = '', audio = ''} = req.body
+    const { type, title, caption = '', text_title = '', text_content = '', image = '', video = '', audio = '', board } = req.body
+    
     if (!title || !type) {
       return res
         .status(400)
@@ -46,7 +47,8 @@ contentRouter
       text_content,
       image,
       video,
-      audio
+      audio, 
+      board
     }
     PostsService.insertPost(
       req.app.get('db'),
@@ -58,6 +60,7 @@ contentRouter
         .location(path.posix.join(req.originalUrl, `/${post.id}`))
         .json({
           id: post.id,
+          board: post.board,
           type: post.type,
           title: xss(post.title),
           caption: xss(post.caption),
@@ -106,6 +109,7 @@ contentRouter
       }
       res.json({
         id: post.id,
+        board: post.board,
         type: post.type,
         title: xss(post.title),
         caption: xss(post.caption),
@@ -131,7 +135,7 @@ contentRouter
       .catch(next)
   })
   .patch(bodyParser, (req, res, next) => {
-    const { type, title, caption = '', text_title = '', text_content = '', image = '', video = '', audio = ''} = req.body
+    const { type, title, caption = '', text_title = '', text_content = '', image = '', video = '', audio = '', board} = req.body
     const postToUpdate = {
       type,
       title,
@@ -140,7 +144,8 @@ contentRouter
       text_content,
       image,
       video,
-      audio
+      audio,
+      board
     }
     PostsService.updatePost(
       req.app.get('db'),
