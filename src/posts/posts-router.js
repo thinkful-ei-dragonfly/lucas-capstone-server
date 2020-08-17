@@ -29,6 +29,7 @@ contentRouter
 						image: post.image,
 						video: post.video,
 						audio: post.audio,
+						iframe: post.iframe,
 					}))
 				);
 			})
@@ -118,6 +119,7 @@ contentRouter
 					image: post.image,
 					video: post.video,
 					audio: post.audio,
+					iframe: post.iframe,
 				});
 			})
 			.catch(next);
@@ -139,6 +141,7 @@ contentRouter
 			image = '',
 			video = '',
 			audio = '',
+			iframe = '',
 			board,
 		} = req.body;
 		const postToUpdate = {
@@ -150,6 +153,7 @@ contentRouter
 			image,
 			video,
 			audio,
+			iframe,
 			board,
 		};
 		PostsService.updatePost(req.app.get('db'), req.params.post_id, postToUpdate)
