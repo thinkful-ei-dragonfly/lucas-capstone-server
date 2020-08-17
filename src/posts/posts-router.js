@@ -30,6 +30,7 @@ contentRouter
 						video: post.video,
 						audio: post.audio,
 						iframe: post.iframe,
+						hex: post.hex,
 					}))
 				);
 			})
@@ -120,6 +121,7 @@ contentRouter
 					video: post.video,
 					audio: post.audio,
 					iframe: post.iframe,
+					hex: post.hex,
 				});
 			})
 			.catch(next);
@@ -142,6 +144,7 @@ contentRouter
 			video = '',
 			audio = '',
 			iframe = '',
+			hex = '#ffffff',
 			board,
 		} = req.body;
 		const postToUpdate = {
@@ -154,6 +157,7 @@ contentRouter
 			video,
 			audio,
 			iframe,
+			hex,
 			board,
 		};
 		PostsService.updatePost(req.app.get('db'), req.params.post_id, postToUpdate)
