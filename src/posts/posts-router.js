@@ -47,6 +47,7 @@ contentRouter
 			video = '',
 			audio = '',
 			iframe = '',
+			hex = '#ffffff',
 			board,
 		} = req.body;
 
@@ -66,6 +67,7 @@ contentRouter
 			audio,
 			iframe,
 			board,
+			hex,
 		};
 		PostsService.insertPost(req.app.get('db'), newPost)
 			.then((post) => {
@@ -84,6 +86,7 @@ contentRouter
 						iframe: post.iframe,
 						video: post.video,
 						audio: post.audio,
+						hex: post.hex,
 					});
 			})
 			.catch(next);
