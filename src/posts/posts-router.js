@@ -46,6 +46,7 @@ contentRouter
 			image = '',
 			video = '',
 			audio = '',
+			iframe = '',
 			board,
 		} = req.body;
 
@@ -63,6 +64,7 @@ contentRouter
 			image,
 			video,
 			audio,
+			iframe,
 			board,
 		};
 		PostsService.insertPost(req.app.get('db'), newPost)
@@ -79,6 +81,7 @@ contentRouter
 						text_title: xss(post.text_title),
 						text_content: xss(post.text_content),
 						image: post.image,
+						iframe: post.iframe,
 						video: post.video,
 						audio: post.audio,
 					});
