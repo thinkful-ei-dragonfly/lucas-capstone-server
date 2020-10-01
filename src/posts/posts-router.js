@@ -30,6 +30,7 @@ contentRouter
 						video: post.video,
 						audio: post.audio,
 						iframe: post.iframe,
+						embed: post.embed,
 						hex: post.hex
 					}))
 				);
@@ -47,6 +48,7 @@ contentRouter
 			video = '',
 			audio = '',
 			iframe = '',
+			embed = '',
 			hex = '',
 			board
 		} = req.body;
@@ -66,6 +68,7 @@ contentRouter
 			video,
 			audio,
 			iframe,
+			embed,
 			board,
 			hex
 		};
@@ -84,6 +87,7 @@ contentRouter
 						text_content: xss(post.text_content),
 						image: post.image,
 						iframe: post.iframe,
+						embed: post.embed,
 						video: post.video,
 						audio: post.audio,
 						hex: post.hex
@@ -127,6 +131,7 @@ contentRouter
 					video: post.video,
 					audio: post.audio,
 					iframe: post.iframe,
+					embed: post.embed,
 					hex: post.hex
 				});
 			})
@@ -150,6 +155,7 @@ contentRouter
 			video = '',
 			audio = '',
 			iframe = '',
+			embed = '',
 			hex = '',
 			board
 		} = req.body;
@@ -163,6 +169,7 @@ contentRouter
 			video,
 			audio,
 			iframe,
+			embed,
 			hex,
 			board
 		};
