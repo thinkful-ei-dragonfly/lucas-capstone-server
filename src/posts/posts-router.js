@@ -7,7 +7,7 @@ const { requireAuth } = require('../middleware/jwt-auth');
 
 const contentRouter = express.Router();
 const bodyParser = express.json({
-	limit: '100000000k',
+	limit: '100000000k'
 });
 
 contentRouter
@@ -30,7 +30,7 @@ contentRouter
 						video: post.video,
 						audio: post.audio,
 						iframe: post.iframe,
-						hex: post.hex,
+						hex: post.hex
 					}))
 				);
 			})
@@ -47,13 +47,13 @@ contentRouter
 			video = '',
 			audio = '',
 			iframe = '',
-			hex = '#ffffff',
-			board,
+			hex = '',
+			board
 		} = req.body;
 
 		if (!title || !type) {
 			return res.status(400).json({
-				error: { message: `Missing "title" or "type" in request body` },
+				error: { message: `Missing "title" or "type" in request body` }
 			});
 		}
 		const newPost = {
@@ -67,7 +67,7 @@ contentRouter
 			audio,
 			iframe,
 			board,
-			hex,
+			hex
 		};
 		PostsService.insertPost(req.app.get('db'), newPost)
 			.then((post) => {
@@ -86,7 +86,7 @@ contentRouter
 						iframe: post.iframe,
 						video: post.video,
 						audio: post.audio,
-						hex: post.hex,
+						hex: post.hex
 					});
 			})
 			.catch(next);
@@ -99,7 +99,7 @@ contentRouter
 			.then((post) => {
 				if (!post) {
 					return res.status(404).json({
-						error: { message: `Post doesn't exist` },
+						error: { message: `Post doesn't exist` }
 					});
 				}
 				res.post = post;
@@ -112,7 +112,7 @@ contentRouter
 			.then((post) => {
 				if (!post) {
 					return res.status(404).json({
-						error: { message: `Post doesn't exist` },
+						error: { message: `Post doesn't exist` }
 					});
 				}
 				res.json({
@@ -127,7 +127,7 @@ contentRouter
 					video: post.video,
 					audio: post.audio,
 					iframe: post.iframe,
-					hex: post.hex,
+					hex: post.hex
 				});
 			})
 			.catch(next);
@@ -150,8 +150,8 @@ contentRouter
 			video = '',
 			audio = '',
 			iframe = '',
-			hex = '#ffffff',
-			board,
+			hex = '',
+			board
 		} = req.body;
 		const postToUpdate = {
 			type,
@@ -164,7 +164,7 @@ contentRouter
 			audio,
 			iframe,
 			hex,
-			board,
+			board
 		};
 		PostsService.updatePost(req.app.get('db'), req.params.post_id, postToUpdate)
 			.then((numRowsAffected) => {
